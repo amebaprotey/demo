@@ -30,16 +30,20 @@ public class Main {
         }
 
         try {
-            a = Integer.parseInt(strings[0]);
-            b = Integer.parseInt(strings[1]);
+            a = Integer.parseInt(strings[0].trim());
+            b = Integer.parseInt(strings[1].trim());
+            noMoreTen(a);
+            noMoreTen(b);
             c = calculation(input, a, b);
             result = "" + c;
 
         }catch (NumberFormatException e){
-            char [] character = strings[0].toCharArray();
-            char [] character1 = strings[1].toCharArray();
+            char [] character = strings[0].trim().toCharArray();
+            char [] character1 = strings[1].trim().toCharArray();
             a = romanToArabic(character);
             b = romanToArabic(character1);
+            noMoreTen(a);
+            noMoreTen(b);
             c = calculation(input, a, b);
             if (c < 0)
                 throw new IOException();
@@ -127,4 +131,9 @@ public class Main {
 
         return romanNumber;
     }
+    public static void noMoreTen(int x) throws IOException {
+        if (x > 10)
+            throw new IOException();
+    }
+
 }
